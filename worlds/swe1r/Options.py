@@ -24,6 +24,7 @@ class StartingRacers(Choice):
 
 class NumberOfStartingRacers(Range):
     """How many random racers to start with. This option is only used if Starting Racers is set to 'random_range'"""
+    display_name = "Number of Starting Racers"
     range_start = 2
     range_end = 5
     default = 5
@@ -34,6 +35,7 @@ class DisablePartDegradation(DefaultOnToggle):
 
 class RequiredPlacement(Choice):
     """Minimum place you are required to get on a track to check the location. Note that you will still be able to progress within a circuit with 4th or better"""
+    display_name = "Required Placement"
     option_first = 0
     option_second = 1
     option_third = 2
