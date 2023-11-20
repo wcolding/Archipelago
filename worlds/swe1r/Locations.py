@@ -100,6 +100,8 @@ course_clears_invitational_table = {
     "Invitational 4": 169
 }
 
+course_clears_table = { **course_clears_amateur_table, **course_clears_semipro_table, **course_clears_galactic_table, **course_clears_invitational_table }
+
 racer_unlocks_table = {
     "Racer Unlock - Mon Gazza Speedway": 170,
     "Racer Unlock - The Boonta Classic": 171,
@@ -120,8 +122,35 @@ racer_unlocks_table = {
     "Racer Unlock - Sunken City": 186,
 }
 
-location_table = { **wattos_shop_table, **junkyard_table, **pit_droid_shop_table, **course_clears_amateur_table, \
-    **course_clears_semipro_table, **course_clears_galactic_table, **course_clears_invitational_table, **racer_unlocks_table }
+courses_table = {
+    "Boonta Training Course": 0x00,
+    "Mon Gazza Speedway":     0x10,
+    "Beedo's Wild Ride":      0x02,
+    "Aquilaris Classic":      0x06,
+    "Malastare 100":          0x16,
+    "Vengeance":              0x13,
+    "Spice Mine Run":         0x11,
+    "Sunken City":            0x07,
+    "Howler Gorge":           0x03,
+    "Dug Derby":              0x17,
+    "Scrapper's Run":         0x09,
+    "Zugga Challenge":        0x12,
+    "Baroo Coast":            0x0C,
+    "Bumpy's Breakers":       0x08,
+    "Executioner":            0x14,
+    "Sebulba's Legacy":       0x18,
+    "Grabvine Gateway":       0x0D,
+    "Andobi Mountain Run":    0x04,
+    "Dethro's Revenge":       0x0A,
+    "Fire Mountain Rally":    0x0E,
+    "The Boonta Classic":     0x01,
+    "Ando Prime Centrum":     0x05,
+    "Abyss":                  0x0B,
+    "The Gauntlet":           0x15,
+    "Inferno":                0x0F
+}
+
+location_table = { **wattos_shop_table, **junkyard_table, **pit_droid_shop_table, **course_clears_table, **racer_unlocks_table }
 
 def get_offset_location_table(offset: int):
     offset_loc_table = location_table
