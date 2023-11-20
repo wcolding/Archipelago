@@ -1,5 +1,19 @@
 import typing
-from Options import Option, Choice, Range, DefaultOnToggle
+from Options import Option, Choice, Range, Toggle, DefaultOnToggle
+
+class ProgressiveParts(Toggle):
+    """Pod racer parts will always be the next level upgrade"""
+    display_name = "Progressive Parts"
+
+class ProgressiveCircuits(Toggle):
+    """Access to circuits will be in the regular order"""
+    display_name = "Progressive Circuits"
+    
+class InvitationalCircuitBehavior(Choice):
+    """Affects how Invitational Circuit courses unlock. Vanilla behavior requires first place in all courses of a circuit per invitational course. Circuit pass treats it like the other circuits (unlocked with a Circuit Pass item)"""
+    display_name = "Invitational Circuit Behavior"
+    option_vanilla = 0
+    option_circuit_pass = 1
 
 class StartingRacers(Choice):
     """Change which racers are available to use at the beginning"""
@@ -23,3 +37,13 @@ class RequiredPlacement(Choice):
     option_first = 0
     option_second = 1
     option_third = 2
+
+swr_options = {
+    "progressive_parts": ProgressiveParts,
+    "progressive_circuits": ProgressiveCircuits,
+    "invitational_circuit_behavior": InvitationalCircuitBehavior,
+    "starting_racers": StartingRacers,
+    "number_of_starting_racers": NumberOfStartingRacers,
+    "disable_part_degradation": DisablePartDegradation,
+    "required_placement": RequiredPlacement
+}

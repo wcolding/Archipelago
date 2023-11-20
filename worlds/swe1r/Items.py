@@ -105,11 +105,11 @@ vanilla_racers_list = {
     "Ebe Endocott",
     "Dud Bolt",
     "Gasgano",
-    "Clegg Holdfast",
-    "Elan Mak"
+    "Elan Mak",
+    "Ody Mandrell"
 }
 
-generic_item_table = {
+misc_item_table = {
     "Pit Droid": 65,
     "Semi Pro Circuit Pass": 66,
     "Galactic Circuit Pass": 67,
@@ -117,5 +117,18 @@ generic_item_table = {
     "Progressive Circuit Pass": 69,
     #"400 Truguts": 70,
     #"600 Truguts": 71,
-
 }
+
+def get_item_table():
+    item_table = { **pod_progressive_item_table, **pod_item_table, **misc_item_table }
+    for racer in racers_table:
+        item_table[racer] = racers_table[racer][0]
+
+    return item_table
+
+def get_offset_item_table(offset: int):
+    item_table = get_item_table()
+    for item in item_table:
+        item_table[item] += offset 
+
+    return item_table

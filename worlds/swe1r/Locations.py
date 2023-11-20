@@ -1,5 +1,9 @@
+from BaseClasses import Location
 
-watto_shop_table = {
+class SWRacerLocation(Location):
+    game: str = "Star Wars Episode I Racer"
+
+wattos_shop_table = {
     "Watto's Shop - Traction Upgrade 1": 100,
     "Watto's Shop - Traction Upgrade 2": 101,
     "Watto's Shop - Traction Upgrade 3": 102,
@@ -115,3 +119,13 @@ racer_unlocks_table = {
     "Racer Unlock - Executioner": 185,
     "Racer Unlock - Sunken City": 186,
 }
+
+location_table = { **wattos_shop_table, **junkyard_table, **pit_droid_shop_table, **course_clears_amateur_table, \
+    **course_clears_semipro_table, **course_clears_galactic_table, **course_clears_invitational_table, **racer_unlocks_table }
+
+def get_offset_location_table(offset: int):
+    offset_loc_table = location_table
+    for loc in offset_loc_table:
+        offset_loc_table[loc] += offset 
+
+    return offset_loc_table
