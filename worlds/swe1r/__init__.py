@@ -3,6 +3,7 @@ from .Items import *
 from .Locations import *
 from .Options import *
 import random
+import typing
 
 from BaseClasses import Region, ItemClassification
 
@@ -25,7 +26,7 @@ class SWRWorld(World):
 
     starting_racers_list = [] 
     racers_flag = 0
-    randomized_courses_list = []
+    randomized_courses = dict()
 
     def set_starting_racers(self):
         match (self.multiworld.starting_racers[self.player].value):
@@ -42,8 +43,6 @@ class SWRWorld(World):
                 rand_range = self.multiworld.number_of_starting_racers[self.player].value
 
                 remaining_racers = list(racers_table.keys())
-                # for racer,id in racers_table.items():
-                #     remaining_racers += [racer]
                 
                 for i in range(0, rand_range):
                     selection = remaining_racers[random.randint(0, len(remaining_racers) - 1)]
@@ -63,7 +62,7 @@ class SWRWorld(World):
         for i in range(0, len(courses_table)):
             selection = remaining_courses[random.randint(0, len(remaining_courses) - 1)]
             remaining_courses.remove(selection)
-            self.randomized_courses_list += [courses_table[selection]]
+            self.randomized_courses[i] = courses_table[selection]
             self.multiworld.spoiler.set_entrance("{location} ({old})".format(location = course_locations_list[i], old = courses_list[i]), selection, 'entrance', self.player)
 
     def generate_early(self):
@@ -73,7 +72,7 @@ class SWRWorld(World):
     def fill_slot_data(self):
         return {
             "StartingRacers": self.racers_flag,
-            "Courses": self.randomized_courses_list,
+            "Courses": self.randomized_courses,
             "ProgressiveParts": self.multiworld.progressive_parts[self.player].value,
             "ProgressiveCircuits": self.multiworld.progressive_circuits[self.player].value,
             "InvitationalCircuitBehavior": self.multiworld.invitational_circuit_behavior[self.player].value,
