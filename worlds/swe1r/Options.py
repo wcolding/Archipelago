@@ -1,5 +1,5 @@
 import typing
-from Options import Option, Choice, Range, Toggle, DefaultOnToggle
+from Options import Option, Choice, Range, Toggle, DefaultOnToggle, DeathLink
 
 class ProgressiveParts(Toggle):
     """Pod racer parts will always be the next level upgrade"""
@@ -47,5 +47,6 @@ swr_options = {
     "starting_racers": StartingRacers,
     "number_of_starting_racers": NumberOfStartingRacers,
     "disable_part_degradation": DisablePartDegradation,
-    "required_placement": RequiredPlacement
+    "required_placement": RequiredPlacement,
+    "deathlink": DeathLink
 }

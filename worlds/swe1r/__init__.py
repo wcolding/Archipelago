@@ -77,7 +77,8 @@ class SWRWorld(World):
             "ProgressiveCircuits": self.multiworld.progressive_circuits[self.player].value,
             "InvitationalCircuitBehavior": self.multiworld.invitational_circuit_behavior[self.player].value,
             "DisablePartDegradation": self.multiworld.disable_part_degradation[self.player].value,
-            "RequiredPlacement": self.multiworld.required_placement[self.player].value
+            "RequiredPlacement": self.multiworld.required_placement[self.player].value,
+            "DeathLink": self.multiworld.deathlink[self.player].value,
         }
 
     def create_regions(self):
