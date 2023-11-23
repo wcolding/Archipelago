@@ -22,7 +22,7 @@ class SWRWorld(World):
     location_name_to_id = get_offset_location_table(base_id)
 
     data_version = 9
-    required_client_version = (0, 4, 2)
+    required_client_version = (0, 4, 3)
 
     starting_racers_list = [] 
     racers_flag = 0
