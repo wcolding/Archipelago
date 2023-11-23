@@ -64,40 +64,40 @@ pit_droid_shop_table = {
 }
 
 course_clears_amateur_table = {
-    "Amateur 1": 145,
-    "Amateur 2": 146,
-    "Amateur 3": 147,
-    "Amateur 4": 148,
-    "Amateur 5": 149,
-    "Amateur 6": 150,
-    "Amateur 7": 151
+    "Amateur Race 1": 145,
+    "Amateur Race 2": 146,
+    "Amateur Race 3": 147,
+    "Amateur Race 4": 148,
+    "Amateur Race 5": 149,
+    "Amateur Race 6": 150,
+    "Amateur Race 7": 151
 }
 
 course_clears_semipro_table = {
-    "Semipro 1": 152,
-    "Semipro 2": 153,
-    "Semipro 3": 154,
-    "Semipro 4": 155,
-    "Semipro 5": 156,
-    "Semipro 6": 157,
-    "Semipro 7": 158
+    "Semi-Pro Race 1": 152,
+    "Semi-Pro Race 2": 153,
+    "Semi-Pro Race 3": 154,
+    "Semi-Pro Race 4": 155,
+    "Semi-Pro Race 5": 156,
+    "Semi-Pro Race 6": 157,
+    "Semi-Pro Race 7": 158
 }
 
 course_clears_galactic_table = {
-    "Galactic 1": 159,
-    "Galactic 2": 160,
-    "Galactic 3": 161,
-    "Galactic 4": 162,
-    "Galactic 5": 163,
-    "Galactic 6": 164,
-    "Galactic 7": 165
+    "Galactic Race 1": 159,
+    "Galactic Race 2": 160,
+    "Galactic Race 3": 161,
+    "Galactic Race 4": 162,
+    "Galactic Race 5": 163,
+    "Galactic Race 6": 164,
+    "Galactic Race 7": 165
 }
 
 course_clears_invitational_table = {
-    "Invitational 1": 166,
-    "Invitational 2": 167,
-    "Invitational 3": 168,
-    "Invitational 4": 169
+    "Invitational Race 1": 166,
+    "Invitational Race 2": 167,
+    "Invitational Race 3": 168,
+    "Invitational Race 4": 169
 }
 
 course_clears_table = { **course_clears_amateur_table, **course_clears_semipro_table, **course_clears_galactic_table, **course_clears_invitational_table }
