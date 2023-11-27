@@ -122,9 +122,9 @@ class SWRWorld(World):
             if racer not in self.starting_racers_list:
                 self.multiworld.itempool += [self.create_item(racer)]
 
-        winnings_list = get_full_winnings(self.multiworld.winnings_setting)
+        winnings_list = get_full_winnings(self.multiworld.winnings_setting[self.player].value)
         for item in winnings_list:
-            self.create_item(get_money_item_name(item))
+            self.multiworld.itempool += [self.create_item(get_money_item_name(item))]
 
     def set_rules(self) -> None:
         return super().set_rules()
