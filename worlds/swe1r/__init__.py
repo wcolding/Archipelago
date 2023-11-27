@@ -1,5 +1,6 @@
 from ..AutoWorld import World
 from .Items import *
+from .Winnings import get_full_winnings, get_money_item_name
 from .Locations import *
 from .Options import *
 import random
@@ -120,6 +121,10 @@ class SWRWorld(World):
         for racer in racers_table:
             if racer not in self.starting_racers_list:
                 self.multiworld.itempool += [self.create_item(racer)]
+
+        winnings_list = get_full_winnings(self.multiworld.winnings_setting)
+        for item in winnings_list:
+            self.create_item(get_money_item_name(item))
 
     def set_rules(self) -> None:
         return super().set_rules()

@@ -114,13 +114,39 @@ misc_item_table = {
     "Semi Pro Circuit Pass": 66,
     "Galactic Circuit Pass": 67,
     "Invitational Circuit Pass": 68,
-    "Progressive Circuit Pass": 69,
-    #"400 Truguts": 70,
-    #"600 Truguts": 71,
+    "Progressive Circuit Pass": 69
+}
+
+# Generated in Winnings.py
+money_item_table = {
+        "100 Truguts": 70,
+        "150 Truguts": 71,
+        "200 Truguts": 72,
+        "300 Truguts": 73,
+        "450 Truguts": 74,
+        "600 Truguts": 75,
+        "700 Truguts": 76,
+        "750 Truguts": 77,
+        "800 Truguts": 78,
+        "900 Truguts": 79,
+        "1050 Truguts": 80,
+        "1200 Truguts": 81,
+        "1400 Truguts": 82,
+        "1500 Truguts": 83,
+        "1600 Truguts": 84,
+        "1750 Truguts": 85,
+        "1800 Truguts": 86,
+        "2000 Truguts": 87,
+        "2200 Truguts": 88,
+        "2400 Truguts": 89,
+        "3000 Truguts": 90,
+        "3300 Truguts": 91,
+        "4400 Truguts": 92,
+        "5500 Truguts": 93,
 }
 
 def get_item_table():
-    item_table = { **pod_progressive_item_table, **pod_item_table, **misc_item_table }
+    item_table = { **pod_progressive_item_table, **pod_item_table, **misc_item_table, **money_item_table }
     for racer in racers_table:
         item_table[racer] = racers_table[racer][0]
 

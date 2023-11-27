@@ -40,6 +40,13 @@ class RequiredPlacement(Choice):
     option_second = 1
     option_third = 2
 
+class WinningsSetting(Choice):
+    """"""
+    display_name = "Winnings Setting"
+    option_fair = 0
+    option_skilled = 1
+    option_winner_takes_all = 2
+
 swr_options = {
     "progressive_parts": ProgressiveParts,
     "progressive_circuits": ProgressiveCircuits,
@@ -48,5 +55,6 @@ swr_options = {
     "number_of_starting_racers": NumberOfStartingRacers,
     "disable_part_degradation": DisablePartDegradation,
     "required_placement": RequiredPlacement,
+    "winnings_setting": WinningsSetting,
     "deathlink": DeathLink
 }
