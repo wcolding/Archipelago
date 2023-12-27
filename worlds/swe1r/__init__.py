@@ -29,8 +29,6 @@ class SWRWorld(World):
     racers_flag = 0
     randomized_courses = dict()
 
-    file_name = ''
-
     def set_starting_racers(self):
         match (self.multiworld.starting_racers[self.player].value):
             case 0: # Vanilla
@@ -71,7 +69,6 @@ class SWRWorld(World):
     def generate_early(self):
         self.set_starting_racers()
         self.randomize_courses()
-        self.file_name = f'P{self.player}_{self.multiworld.player_name[self.player]}-{self.multiworld.seed_name[0:8]}'
 
     def fill_slot_data(self):
         return {
@@ -82,8 +79,7 @@ class SWRWorld(World):
             "InvitationalCircuitBehavior": self.multiworld.invitational_circuit_behavior[self.player].value,
             "DisablePartDegradation": self.multiworld.disable_part_degradation[self.player].value,
             "RequiredPlacement": self.multiworld.required_placement[self.player].value,
-            "DeathLink": self.multiworld.deathlink[self.player].value,
-            "FileName": self.file_name
+            "DeathLink": self.multiworld.deathlink[self.player].value
         }
 
     def create_regions(self):
