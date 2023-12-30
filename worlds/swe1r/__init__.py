@@ -39,6 +39,7 @@ class SWRWorld(World):
                 for racer,id in racers_table.items():
                     if index == single_selection:
                         self.starting_racers_list = [racer]
+                        break
                     index += 1
             case 2: # Random Range
                 rand_range = self.multiworld.number_of_starting_racers[self.player].value
