@@ -150,7 +150,7 @@ courses_table = {
     "Inferno":                0x0F
 }
 
-location_table = { **wattos_shop_table, **junkyard_table, **pit_droid_shop_table, **course_clears_table, **racer_unlocks_table }
+location_table = { **wattos_shop_table, **pit_droid_shop_table, **course_clears_table, **racer_unlocks_table }
 
 def get_offset_location_table(offset: int):
     offset_loc_table = location_table
