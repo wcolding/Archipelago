@@ -96,8 +96,6 @@ class SWRWorld(World):
         id = self.item_name_to_id[name]
         if ("Circuit Pass" in name) or (name in money_item_table):
             item_type = ItemClassification.progression
-        elif (name in pod_progressive_item_table) or (name in pod_item_table) or ("Pit Droid" in name):
-            item_type = ItemClassification.useful
         else:
             item_type = ItemClassification.filler
         return SWRacerItem(name, item_type, id, self.player)
