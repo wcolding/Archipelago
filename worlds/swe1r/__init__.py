@@ -3,6 +3,7 @@ from .Items import *
 from .Winnings import get_full_winnings, get_money_item_name
 from .Locations import *
 from .Options import *
+from .Regions import *
 import random
 import typing
 
@@ -84,13 +85,7 @@ class SWRWorld(World):
         }
 
     def create_regions(self):
-        region_menu = Region("Menu", self.player, self.multiworld)
-        for loc in location_table:
-            if "Pit Droid Shop" in loc:
-                if (self.multiworld.disable_part_degradation[self.player].value):
-                   continue 
-            region_menu.locations.append(SWRacerLocation(self.player, loc, self.location_name_to_id[loc], region_menu))
-        self.multiworld.regions.append(region_menu)
+        create_swe1r_regions(self.multiworld, self.player, self.base_id)
 
     def create_item(self, name: str) -> "Item":
         id = self.item_name_to_id[name]
