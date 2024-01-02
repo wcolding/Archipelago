@@ -85,7 +85,7 @@ class SWRWorld(World):
         }
 
     def create_regions(self):
-        create_swe1r_regions(self.multiworld, self.player, self.base_id)
+        create_swe1r_regions(self.multiworld, self.player, self.base_id, self.randomized_courses)
 
     def create_item(self, name: str) -> "Item":
         id = self.item_name_to_id[name]
