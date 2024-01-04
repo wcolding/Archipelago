@@ -39,42 +39,28 @@ def create_swe1r_regions(world: MultiWorld, player: int, base_id: int, _randomiz
     galactic_locations = get_locations("galactic")
     invitational_locations = get_locations("invitational")
 
-    amateur_circuit_region = create_region_with_rule(world, player, "Amateur Circuit", amateur_locations, lambda state: True)
+    create_region_with_rule(world, player, "Amateur Circuit", amateur_locations, lambda state: True)
     
     if (world.progressive_circuits[player].value):
-        semipro_circuit_region = create_region_with_rule(world, player, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Progressive Circuit Pass", player, 1))
-        galactic_circuit_region = create_region_with_rule(world, player, "Galactic Circuit", galactic_locations, lambda state: state.has("Progressive Circuit Pass", player, 2))
+        create_region_with_rule(world, player, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Progressive Circuit Pass", player, 1))
+        create_region_with_rule(world, player, "Galactic Circuit", galactic_locations, lambda state: state.has("Progressive Circuit Pass", player, 2))
     else:
-        semipro_circuit_region = create_region_with_rule(world, player, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Semi Pro Circuit Pass", player))
-        galactic_circuit_region = create_region_with_rule(world, player, "Galactic Circuit", galactic_locations, lambda state: state.has("Galactic Circuit Pass", player))
+        create_region_with_rule(world, player, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Semi Pro Circuit Pass", player))
+        create_region_with_rule(world, player, "Galactic Circuit", galactic_locations, lambda state: state.has("Galactic Circuit Pass", player))
 
     if (world.invitational_circuit_behavior[player].value == InvitationalCircuitBehavior.option_vanilla):
         # Player needs 1st place in all tracks in each preceding circuit to unlock the first three tracks in the invitation
         # For now we will treat it as all or nothing
-        invitational_circuit_region = create_region_with_rule(world, player, "Invitational Circuit", invitational_locations, lambda state: state.can_reach("Semi-Pro Circuit", 'Region', player) and state.can_reach("Galactic Circuit", 'Region', player))
+        create_region_with_rule(world, player, "Invitational Circuit", invitational_locations, lambda state: state.can_reach("Semi-Pro Circuit", 'Region', player) and state.can_reach("Galactic Circuit", 'Region', player))
     else:
         if (world.progressive_circuits[player].value):
-            invitational_circuit_region = create_region_with_rule(world, player, "Invitational Circuit", invitational_locations, lambda state: state.has("Progressive Circuit Pass", player, 3))
+            create_region_with_rule(world, player, "Invitational Circuit", invitational_locations, lambda state: state.has("Progressive Circuit Pass", player, 3))
         else:
-            invitational_circuit_region = create_region_with_rule(world, player, "Invitational Circuit", invitational_locations, lambda state: state.has("Invitational Circuit Pass", player))
-    
-    world.regions.append(amateur_circuit_region)
-    world.regions.append(semipro_circuit_region)
-    world.regions.append(galactic_circuit_region)
-    world.regions.append(invitational_circuit_region)
+            create_region_with_rule(world, player, "Invitational Circuit", invitational_locations, lambda state: state.has("Invitational Circuit Pass", player))
 
     # Conditionally-available locations
     if not world.disable_part_degradation[player].value:
-        pit_droid_shop_region = create_region_with_rule(world, player, "Pit Droid Shop", pit_droid_shop_table.keys(), lambda state: True)
-        world.regions.append(pit_droid_shop_region)
-        menu_region.connect(pit_droid_shop_region) 
-    
-    # Connect regions
-    menu_region.connect(watto_shop_region)
-    menu_region.connect(amateur_circuit_region)
-    menu_region.connect(semipro_circuit_region)
-    menu_region.connect(galactic_circuit_region)
-    menu_region.connect(invitational_circuit_region)
+        create_region_with_rule(world, player, "Pit Droid Shop", pit_droid_shop_table.keys(), lambda state: True)    
 
     # All courses available
     world.completion_condition[player] = lambda state: state.can_reach("Semi-Pro Circuit", 'Region', player) and state.can_reach("Galactic Circuit", 'Region', player) and state.can_reach("Invitational Circuit", 'Region', player)
@@ -85,7 +71,14 @@ def create_region_with_rule(world: MultiWorld, player: int, name: str, location_
         new_loc = SWRacerLocation(player, loc, location_name_to_id[loc], new_reg)
         set_rule(new_loc, rule)
         new_reg.locations.append(new_loc)
-    return new_reg
+
+    world.regions.append(new_reg)
+    
+    menu_region = world.get_region("Menu", player)
+    entrance = Entrance(player, '', menu_region)
+    entrance.access_rule = rule
+    menu_region.exits.append(entrance)
+    entrance.connect(new_reg)
 
 def get_randomized_course_names(randomized_courses: dict, start: int, end: int) -> list:
     names = []
