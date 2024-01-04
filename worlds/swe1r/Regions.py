@@ -45,7 +45,7 @@ def create_swe1r_regions(world: MultiWorld, player: int, base_id: int, _randomiz
         create_region_with_rule(world, player, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Progressive Circuit Pass", player, 1))
         create_region_with_rule(world, player, "Galactic Circuit", galactic_locations, lambda state: state.has("Progressive Circuit Pass", player, 2))
     else:
-        create_region_with_rule(world, player, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Semi Pro Circuit Pass", player))
+        create_region_with_rule(world, player, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Semi-Pro Circuit Pass", player))
         create_region_with_rule(world, player, "Galactic Circuit", galactic_locations, lambda state: state.has("Galactic Circuit Pass", player))
 
     if (world.invitational_circuit_behavior[player].value == InvitationalCircuitBehavior.option_vanilla):

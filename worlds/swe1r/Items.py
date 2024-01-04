@@ -111,7 +111,7 @@ vanilla_racers_list = {
 
 misc_item_table = {
     "Pit Droid": 65,
-    "Semi Pro Circuit Pass": 66,
+    "Semi-Pro Circuit Pass": 66,
     "Galactic Circuit Pass": 67,
     "Invitational Circuit Pass": 68,
     "Progressive Circuit Pass": 69

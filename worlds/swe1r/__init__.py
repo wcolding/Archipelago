@@ -112,7 +112,7 @@ class SWRWorld(World):
                 passes_count += 1
             self.multiworld.itempool += [self.create_item("Progressive Circuit Pass") for i in range(0, passes_count)]
         else:
-            self.multiworld.itempool += [self.create_item("Semi Pro Circuit Pass")]
+            self.multiworld.itempool += [self.create_item("Semi-Pro Circuit Pass")]
             self.multiworld.itempool += [self.create_item("Galactic Circuit Pass")]
             if (self.multiworld.invitational_circuit_behavior[self.player].value == 1):
                 self.multiworld.itempool += [self.create_item("Invitational Circuit Pass")]
