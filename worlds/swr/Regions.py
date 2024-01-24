@@ -1,4 +1,4 @@
-from BaseClasses import Region, Entrance
+from BaseClasses import Region, Entrance, CollectionState
 from ..generic.Rules import set_rule, CollectionRule
 from ..AutoWorld import World
 from .Locations import *
@@ -33,7 +33,15 @@ def create_swr_regions(world: World):
         create_region_with_rule(world, "Invitational Circuit", invitational_locations, lambda state: state.can_reach("Semi-Pro Circuit", 'Region', world.player) and state.can_reach("Galactic Circuit", 'Region', world.player))
 
     # Shop
-    create_region_with_rule(world, "Watto's Shop", list(wattos_shop_table.keys()), lambda state: True)
+    create_region_with_rule(world, "Watto's Shop 0 Races", list(watto_0_races.keys()), lambda state: True)
+    create_region_with_rule(world, "Watto's Shop 2 Races", list(watto_2_races.keys()), lambda state: True)
+    create_region_with_rule(world, "Watto's Shop 4 Races", list(watto_4_races.keys()), lambda state: True)
+    create_region_with_rule(world, "Watto's Shop 6 Races", list(watto_6_races.keys()), lambda state: True)
+    create_region_with_rule(world, "Watto's Shop 8 Races", list(watto_8_races.keys()), lambda state: has_enough_races(state, world.player, 8))
+    create_region_with_rule(world, "Watto's Shop 10 Races", list(watto_10_races.keys()), lambda state: has_enough_races(state, world.player, 10))
+    create_region_with_rule(world, "Watto's Shop 12 Races", list(watto_12_races.keys()), lambda state: has_enough_races(state, world.player, 12))
+    create_region_with_rule(world, "Watto's Shop 14 Races", list(watto_14_races.keys()), lambda state: has_enough_races(state, world.player, 14))
+    create_region_with_rule(world, "Watto's Shop 16 Races", list(watto_16_races.keys()), lambda state: has_enough_races(state, world.player, 16))
 
     if world.allow_pit_droids:
         create_region_with_rule(world, "Pit Droid Shop", list(pit_droid_shop_table.keys()), lambda state: True)  
@@ -58,6 +66,25 @@ def create_region_with_rule(world: World, name: str, location_names: list, rule:
     entrance.access_rule = rule
     menu_region.exits.append(entrance)
     entrance.connect(new_reg)
+
+def has_enough_races(state: CollectionState, player: int, required: int):
+    count = 7
+    if state.can_reach("Semi-Pro Circuit", 'Region', player):
+        count += 7
+        if count >= required:
+            return True
+    
+    if state.can_reach("Galactic Circuit", 'Region', player):
+        count += 7
+        if count >= required:
+            return True
+        
+    if state.can_reach("Invitational Circuit", 'Region', player):
+        count += 4
+        if count >= required:
+            return True
+        
+    return False
 
 def get_matching_racer_unlocks(circuit_courses: list) -> list:
     unlocks = []
