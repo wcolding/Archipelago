@@ -16,7 +16,8 @@ class SWRWorld(World):
     """
     game: str = "Star Wars Episode I Racer"
     topology_present = False
-    option_definitions = swr_options
+    options_dataclass = SWROptions
+    options: SWROptions
 
     required_client_version = (0, 4, 4)
 

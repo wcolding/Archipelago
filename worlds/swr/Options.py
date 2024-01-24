@@ -1,4 +1,4 @@
-from Options import Choice, Range, Toggle, DefaultOnToggle, DeathLink
+from Options import Choice, Range, Toggle, DefaultOnToggle, DeathLink, dataclass, PerGameCommonOptions
 
 class ProgressiveParts(Toggle):
     """Pod racer parts will always be the next level upgrade"""
@@ -29,12 +29,12 @@ class DisablePartDegradation(DefaultOnToggle):
     """Prevents parts from being damaged and removes pit droids from the item pool. The pit droid shop locations are disabled with this option as well"""
     display_name = "Disable Part Degradation"
 
-swr_options = {
-    "progressive_parts": ProgressiveParts,
-    "progressive_circuits": ProgressiveCircuits,
-    "invitational_circuit_pass": EnableInvitationalCircuitPass,
-    "starting_racers": StartingRacers,
-    "number_of_starting_racers": NumberOfStartingRacers,
-    "disable_part_degradation": DisablePartDegradation,
-    "deathlink": DeathLink
-}
+@dataclass
+class SWROptions(PerGameCommonOptions):
+    progressive_parts: ProgressiveParts
+    progressive_circuits: ProgressiveCircuits
+    invitational_circuit_pass: EnableInvitationalCircuitPass
+    starting_racers: StartingRacers
+    number_of_starting_racers: NumberOfStartingRacers
+    disable_part_degradation: DisablePartDegradation
+    deathlink: DeathLink
