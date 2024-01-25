@@ -62,11 +62,11 @@ class SWRWorld(World):
         return {
             "StartingRacers": self.starting_racers_flag,
             "Courses": self.randomized_courses,
-            "ProgressiveParts": self.options.progressive_parts,
-            "ProgressiveCircuits": self.options.progressive_circuits,
-            "EnableInvitationalCircuitPass": self.options.invitational_circuit_pass,
-            "DisablePartDegradation": self.options.disable_part_degradation,
-            "DeathLink": self.options.deathlink
+            "ProgressiveParts": self.options.progressive_parts.value,
+            "ProgressiveCircuits": self.options.progressive_circuits.value,
+            "EnableInvitationalCircuitPass": self.options.invitational_circuit_pass.value,
+            "DisablePartDegradation": self.options.disable_part_degradation.value,
+            "DeathLink": self.options.deathlink.value
         }
     
     def create_regions(self) -> None:
