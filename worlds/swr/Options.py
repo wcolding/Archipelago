@@ -18,7 +18,7 @@ class StartingRacers(Choice):
     option_vanilla = 0
     option_random_range = 1
 
-class NumberOfStartingRacers(Range):
+class StartingRacersCount(Range):
     """How many random racers to start with. This option is only used if Starting Racers is set to 'random_range'"""
     display_name = "Number of Starting Racers"
     range_start = 1
@@ -35,6 +35,6 @@ class SWROptions(PerGameCommonOptions):
     progressive_circuits: ProgressiveCircuits
     invitational_circuit_pass: EnableInvitationalCircuitPass
     starting_racers: StartingRacers
-    number_of_starting_racers: NumberOfStartingRacers
+    starting_racers_count: StartingRacersCount
     disable_part_degradation: DisablePartDegradation
     deathlink: DeathLink

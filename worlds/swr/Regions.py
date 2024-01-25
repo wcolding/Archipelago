@@ -15,15 +15,15 @@ def create_swr_regions(world: World):
 
     create_region_with_rule(world, "Amateur Circuit", amateur_locations, lambda state: True)
     
-    if world.progressive_circuits:
+    if world.options.progressive_circuits:
         create_region_with_rule(world, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Progressive Circuit Pass", world.player, 1))
         create_region_with_rule(world, "Galactic Circuit", galactic_locations, lambda state: state.has("Progressive Circuit Pass", world.player, 2))
     else:
         create_region_with_rule(world, "Semi-Pro Circuit", semipro_locations, lambda state: state.has("Semi-Pro Circuit Pass", world.player))
         create_region_with_rule(world, "Galactic Circuit", galactic_locations, lambda state: state.has("Galactic Circuit Pass", world.player))
 
-    if world.invitational_pass:
-        if world.progressive_circuits:
+    if world.options.invitational_circuit_pass:
+        if world.options.progressive_circuits:
             create_region_with_rule(world, "Invitational Circuit", invitational_locations, lambda state: state.has("Progressive Circuit Pass", world.player, 3))
         else:
             create_region_with_rule(world, "Invitational Circuit", invitational_locations, lambda state: state.has("Invitational Circuit Pass", world.player))
@@ -38,7 +38,7 @@ def create_swr_regions(world: World):
     create_region_with_rule(world, "Watto's Shop 4 Races", list(watto_4_races.keys()), lambda state: True)
     create_region_with_rule(world, "Watto's Shop 6 Races", list(watto_6_races.keys()), lambda state: True)
 
-    if world.progressive_circuits:
+    if world.options.progressive_circuits:
         create_region_with_rule(world, "Watto's Shop 8 Races",  list(watto_8_races.keys()),  lambda state: state.has("Progressive Circuit Pass", world.player, 1))
         create_region_with_rule(world, "Watto's Shop 10 Races", list(watto_10_races.keys()), lambda state: state.has("Progressive Circuit Pass", world.player, 1))
         create_region_with_rule(world, "Watto's Shop 12 Races", list(watto_12_races.keys()), lambda state: state.has("Progressive Circuit Pass", world.player, 2))
@@ -51,7 +51,7 @@ def create_swr_regions(world: World):
         create_region_with_rule(world, "Watto's Shop 14 Races", list(watto_14_races.keys()), lambda state: has_enough_races(state, world.player, 14))
         create_region_with_rule(world, "Watto's Shop 16 Races", list(watto_16_races.keys()), lambda state: has_enough_races(state, world.player, 16))
 
-    if world.allow_pit_droids:
+    if not world.options.disable_part_degradation:
         create_region_with_rule(world, "Pit Droid Shop", list(pit_droid_shop_table.keys()), lambda state: True)  
 
     world.multiworld.completion_condition[world.player] = \

@@ -30,13 +30,13 @@ class SWRWorld(World):
     randomized_course_names = list()
 
     def set_starting_racers(self):
-        if self.multiworld.starting_racers[self.player].value == 0:
+        if self.options.starting_racers == 0:
             # Vanilla
             for racer in vanilla_racers_list:
                 self.starting_racers_flag |= self.racers_pool.pop(racer).bitflag
         else:
             # Random Range
-            rand_range = self.multiworld.number_of_starting_racers[self.player].value
+            rand_range = self.options.starting_racers_count
             racer_names = list(racers_table.keys())
             random.shuffle(racer_names)
             
@@ -58,21 +58,15 @@ class SWRWorld(World):
         self.set_starting_racers()
         self.randomize_courses()
 
-        # Option shortcuts
-        self.progressive_parts = self.multiworld.progressive_parts[self.player].value
-        self.progressive_circuits = self.multiworld.progressive_circuits[self.player].value
-        self.invitational_pass = self.multiworld.invitational_circuit_pass[self.player].value
-        self.allow_pit_droids = not self.multiworld.disable_part_degradation[self.player].value
-
     def fill_slot_data(self) -> Dict[str, Any]:
         return {
             "StartingRacers": self.starting_racers_flag,
             "Courses": self.randomized_courses,
-            "ProgressiveParts": self.multiworld.progressive_parts[self.player].value,
-            "ProgressiveCircuits": self.multiworld.progressive_circuits[self.player].value,
-            "EnableInvitationalCircuitPass": self.multiworld.invitational_circuit_pass[self.player].value,
-            "DisablePartDegradation": self.multiworld.disable_part_degradation[self.player].value,
-            "DeathLink": self.multiworld.deathlink[self.player].value
+            "ProgressiveParts": self.options.progressive_parts,
+            "ProgressiveCircuits": self.options.progressive_circuits,
+            "EnableInvitationalCircuitPass": self.options.invitational_circuit_pass,
+            "DisablePartDegradation": self.options.disable_part_degradation,
+            "DeathLink": self.options.deathlink
         }
     
     def create_regions(self) -> None:
@@ -92,7 +86,7 @@ class SWRWorld(World):
 
     def create_items(self) -> None:
         # Pod Parts
-        if self.progressive_parts:
+        if self.options.progressive_parts:
             for part in pod_progressive_upgrades_table:
                 self.append_items_from_data(part)
         else:
@@ -100,19 +94,19 @@ class SWRWorld(World):
                 self.append_items_from_data(part)
 
         # Pit Droids
-        if self.allow_pit_droids:
+        if not self.options.disable_part_degradation:
             self.append_items_from_data("Pit Droid")
 
         # Circuits
-        if self.progressive_circuits:
-            if self.invitational_pass:
+        if self.options.progressive_circuits:
+            if self.options.invitational_circuit_pass:
                 self.append_items_from_data("Progressive Circuit Pass")
             else:
                 self.append_items_from_data("Progressive Circuit Pass", 2)
         else:
             self.append_items_from_data("Semi-Pro Circuit Pass")
             self.append_items_from_data("Galactic Circuit Pass")
-            if self.invitational_pass:
+            if self.options.invitational_circuit_pass:
                 self.append_items_from_data("Invitational Circuit Pass")
         
         # Racers
