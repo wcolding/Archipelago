@@ -54,10 +54,21 @@ def create_swr_regions(world: World):
     if not world.options.disable_part_degradation:
         create_region_with_rule(world, "Pit Droid Shop", list(pit_droid_shop_table.keys()), lambda state: True)  
 
-    world.multiworld.completion_condition[world.player] = \
-        lambda state: state.can_reach("Semi-Pro Circuit", 'Region', world.player) \
-        and state.can_reach("Galactic Circuit", 'Region', world.player) \
-        and state.can_reach("Invitational Circuit", 'Region', world.player)
+    if world.options.invitational_circuit_pass:
+        if world.options.progressive_circuits:
+            world.multiworld.completion_condition[world.player] = lambda state: state.has("Progressive Circuit Pass", world.player, 3)
+        else:
+            world.multiworld.completion_condition[world.player] = \
+                lambda state: state.has("Semi-Pro Circuit Pass", world.player) \
+                and state.has("Galactic Circuit Pass", world.player) \
+                and state.has("Invitational Circuit Pass", world.player) 
+    else:
+        if world.options.progressive_circuits:
+            world.multiworld.completion_condition[world.player] = lambda state: state.has("Progressive Circuit Pass", world.player, 2)
+        else:
+            world.multiworld.completion_condition[world.player] = \
+                lambda state: state.has("Semi-Pro Circuit Pass", world.player) \
+                and state.has("Galactic Circuit Pass", world.player)
 
 def create_region_with_rule(world: World, name: str, location_names: list, rule: CollectionRule) -> Region:
     new_reg = Region(name, world.player, world.multiworld)
