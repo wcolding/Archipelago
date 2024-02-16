@@ -66,6 +66,7 @@ class SWRWorld(World):
             "ProgressiveCircuits": self.options.progressive_circuits.value,
             "EnableInvitationalCircuitPass": self.options.invitational_circuit_pass.value,
             "DisablePartDegradation": self.options.disable_part_degradation.value,
+            "AIScaling": self.options.ai_scaling.value,
             "DeathLink": self.options.deathlink.value
         }
     
