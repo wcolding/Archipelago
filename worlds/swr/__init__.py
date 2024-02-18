@@ -1,4 +1,4 @@
-from typing import Any, Dict
+from typing import Dict
 import random
 
 from BaseClasses import Item
@@ -26,7 +26,7 @@ class SWRWorld(World):
 
     racers_pool = racers_table
     starting_racers_flag = 0
-    randomized_courses = dict()
+    randomized_courses = Dict[int, int]
     randomized_course_names = list()
 
     def set_starting_racers(self):
@@ -45,20 +45,22 @@ class SWRWorld(World):
                 self.starting_racers_flag |= self.racers_pool.pop(selected_racer).bitflag        
 
     def randomize_courses(self):
+        self.randomized_courses = {}
         course_clears = list(course_clears_table.keys())
         course_names = list(courses_table.keys())
         self.randomized_course_names = list(course_names)
         random.shuffle(self.randomized_course_names)
 
         for i in range(0, len(self.randomized_course_names)):
-            self.randomized_courses[i] = courses_table[self.randomized_course_names[i]]
+            current_course = courses_table[self.randomized_course_names[i]]
+            self.randomized_courses.update({int(i): int(current_course)})
             self.multiworld.spoiler.set_entrance(f"{course_clears[i]} ({course_names[i]})", self.randomized_course_names[i], 'entrance', self.player)
 
     def generate_early(self):
         self.set_starting_racers()
         self.randomize_courses()
 
-    def fill_slot_data(self) -> Dict[str, Any]:
+    def fill_slot_data(self):
         return {
             "StartingRacers": self.starting_racers_flag,
             "Courses": self.randomized_courses,
