@@ -29,6 +29,8 @@ class SWRWorld(World):
     randomized_courses = Dict[int, int]
     randomized_course_names = list()
 
+    local_item_count = 0
+
     def set_starting_racers(self):
         if self.options.starting_racers == 0:
             # Vanilla
@@ -85,6 +87,7 @@ class SWRWorld(World):
         if count_override != None:
             count = count_override
 
+        self.local_item_count += count
         self.multiworld.itempool += [SWRItem(name, item_data.classification, item_data.id, self.player) for i in range(0, count)]
 
     def create_items(self) -> None:
@@ -119,6 +122,11 @@ class SWRWorld(World):
         # Money
         for item in money_item_table:
             self.append_items_from_data(item)
+
+        # Extra money to fill in gaps
+        extra = len(self.multiworld.get_unfilled_locations(self.player)) - self.local_item_count
+        if extra > 0:
+            self.append_items_from_data("1000 Truguts", extra)
 
     def set_rules(self) -> None:
         return super().set_rules()

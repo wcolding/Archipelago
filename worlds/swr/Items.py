@@ -127,11 +127,11 @@ misc_item_table = {
 # These values compensate for the difference between "Fair" and other payout choices
 # In other words, races always pay out but these are the "vanilla rewards" for race completion that will be shuffled into the pool 
 money_item_table = {
-    "400 Truguts":               SWRItemData(70, ItemClassification.useful, 4),
-    "600 Truguts":               SWRItemData(71, ItemClassification.useful, 4),
-    "800 Truguts":               SWRItemData(72, ItemClassification.useful, 4),
+    "400 Truguts":               SWRItemData(70, ItemClassification.useful, 1),
+    "600 Truguts":               SWRItemData(71, ItemClassification.useful, 2),
+    "800 Truguts":               SWRItemData(72, ItemClassification.useful, 2),
     "1000 Truguts":              SWRItemData(73, ItemClassification.useful, 2),
-    "1400 Truguts":              SWRItemData(74, ItemClassification.useful, 3),
+    "1400 Truguts":              SWRItemData(74, ItemClassification.useful, 2),
     "2100 Truguts":              SWRItemData(75, ItemClassification.useful, 3),
     "2800 Truguts":              SWRItemData(76, ItemClassification.useful, 3),
     "3500 Truguts":              SWRItemData(77, ItemClassification.useful, 2),
