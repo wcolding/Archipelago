@@ -51,8 +51,7 @@ def create_swr_regions(world: World):
         create_region_with_rule(world, "Watto's Shop 14 Races", list(watto_14_races.keys()), lambda state: has_enough_races(state, world.player, 14))
         create_region_with_rule(world, "Watto's Shop 16 Races", list(watto_16_races.keys()), lambda state: has_enough_races(state, world.player, 16))
 
-    if not world.options.disable_part_degradation:
-        create_region_with_rule(world, "Pit Droid Shop", list(pit_droid_shop_table.keys()), lambda state: True)  
+    create_region_with_rule(world, "Pit Droid Shop", list(pit_droid_shop_table.keys()), lambda state: True)  
 
     if world.options.invitational_circuit_pass:
         if world.options.progressive_circuits:

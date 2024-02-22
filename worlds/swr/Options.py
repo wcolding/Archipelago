@@ -46,7 +46,7 @@ class AdditionalAIMultiplier(Range):
     default = 1000
 
 class DisablePartDegradation(DefaultOnToggle):
-    """Prevents parts from being damaged and removes pit droids from the item pool. The pit droid shop locations are disabled with this option as well"""
+    """Prevents parts from being damaged and removes pit droids from the item pool. Extra money will be added to the pool."""
     display_name = "Disable Part Degradation"
 
 @dataclass
