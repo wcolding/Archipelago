@@ -36,6 +36,15 @@ class AIScaling(Choice):
     option_circuits = 1 
     option_parts = 2
 
+class AdditionalAIMultiplier(Range):
+    """Applies additional scaling to AI
+    1000 = 1.000
+    """
+    display_name = "Additional AI Multiplier"
+    range_start = 100
+    range_end = 5000
+    default = 1000
+
 class DisablePartDegradation(DefaultOnToggle):
     """Prevents parts from being damaged and removes pit droids from the item pool. The pit droid shop locations are disabled with this option as well"""
     display_name = "Disable Part Degradation"
@@ -49,4 +58,5 @@ class SWROptions(PerGameCommonOptions):
     starting_racers_count: StartingRacersCount
     disable_part_degradation: DisablePartDegradation
     ai_scaling: AIScaling
+    additional_ai_multiplier: AdditionalAIMultiplier
     deathlink: DeathLink
