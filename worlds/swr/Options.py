@@ -22,7 +22,7 @@ class StartingRacersCount(Range):
     """How many random racers to start with. This option is only used if Starting Racers is set to 'random_range'"""
     display_name = "Number of Starting Racers"
     range_start = 1
-    range_end = 6
+    range_end = 23
     default = 6
 
 class AIScaling(Choice):
