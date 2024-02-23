@@ -45,9 +45,9 @@ class AdditionalAIMultiplier(Range):
     range_end = 5000
     default = 1000
 
-class DisablePartDegradation(DefaultOnToggle):
+class DisablePartDamage(DefaultOnToggle):
     """Prevents parts from being damaged and removes pit droids from the item pool. Extra money will be added to the pool."""
-    display_name = "Disable Part Degradation"
+    display_name = "Disable Part Damage"
 
 @dataclass
 class SWROptions(PerGameCommonOptions):
@@ -56,7 +56,7 @@ class SWROptions(PerGameCommonOptions):
     invitational_circuit_pass: EnableInvitationalCircuitPass
     starting_racers: StartingRacers
     starting_racers_count: StartingRacersCount
-    disable_part_degradation: DisablePartDegradation
+    disable_part_damage: DisablePartDamage
     ai_scaling: AIScaling
     additional_ai_multiplier: AdditionalAIMultiplier
     deathlink: DeathLink

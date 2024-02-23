@@ -69,7 +69,7 @@ class SWRWorld(World):
             "ProgressiveParts": self.options.progressive_parts.value,
             "ProgressiveCircuits": self.options.progressive_circuits.value,
             "EnableInvitationalCircuitPass": self.options.invitational_circuit_pass.value,
-            "DisablePartDegradation": self.options.disable_part_degradation.value,
+            "DisablePartDamage": self.options.disable_part_damage.value,
             "AIScaling": self.options.ai_scaling.value,
             "AdditionalAIMultiplier": self.options.additional_ai_multiplier.value,
             "DeathLink": self.options.deathlink.value
@@ -101,7 +101,7 @@ class SWRWorld(World):
                 self.append_items_from_data(part)
 
         # Pit Droids
-        if not self.options.disable_part_degradation:
+        if not self.options.disable_part_damage:
             self.append_items_from_data("Pit Droid")
 
         # Circuits
