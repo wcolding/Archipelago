@@ -10,7 +10,7 @@ class ProgressiveCircuits(Toggle):
     
 class EnableInvitationalCircuitPass(Toggle):
     """Affects how Invitational Circuit courses unlock. If enabled, Invitational is unlocked with a Circuit Pass item like the others. Otherwise, each Invitational course requires first place in all courses of a corresponding circuit."""
-    display_name = "Invitational Circuit Behavior"
+    display_name = "Invitational Circuit Pass"
 
 class StartingRacers(Choice):
     """Change which racers are available to use at the beginning"""
